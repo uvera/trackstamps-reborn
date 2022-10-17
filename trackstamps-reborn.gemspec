@@ -1,20 +1,20 @@
-require_relative "lib/example/version"
+require_relative "lib/trackstamps/reborn/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "example"
-  spec.version = Example::VERSION
-  spec.authors = ["Example Owner"]
-  spec.email = ["owner@example.com"]
+  spec.name = "trackstamps-reborn"
+  spec.version = Trackstamps::Reborn::VERSION
+  spec.authors = ["Dušan"]
+  spec.email = ["dusan.uveric@mitigate.dev"]
 
   spec.summary = ""
-  spec.homepage = "https://github.com/mattbrictson/gem"
+  spec.homepage = "https://github.com/uvera/trackstamps-reborn"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6"
 
   spec.metadata = {
-    "bug_tracker_uri" => "https://github.com/mattbrictson/gem/issues",
-    "changelog_uri" => "https://github.com/mattbrictson/gem/releases",
-    "source_code_uri" => "https://github.com/mattbrictson/gem",
+    "bug_tracker_uri" => "https://github.com/uvera/trackstamps-reborn/issues",
+    "changelog_uri" => "https://github.com/uvera/trackstamps-reborn/releases",
+    "source_code_uri" => "https://github.com/uvera/trackstamps-reborn",
     "homepage_uri" => spec.homepage,
     "rubygems_mfa_required" => "true"
   }
