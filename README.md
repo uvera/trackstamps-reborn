@@ -6,6 +6,8 @@
 
 Track which user created or updated record in Rails.
 
+Inspired and part of code used from original [Trackstamps](https://github.com/mshahzadtariq/trackstamps) gem
+
 ---
 
 - [Quick start](#quick-start)
