@@ -4,7 +4,7 @@
 [![Circle](https://circleci.com/gh/uvera/trackstamps-reborn/tree/main.svg?style=shield)](https://app.circleci.com/pipelines/github/uvera/trackstamps-reborn?branch=main)
 [![Code Climate](https://codeclimate.com/github/uvera/trackstamps-reborn/badges/gpa.svg)](https://codeclimate.com/github/uvera/trackstamps-reborn)
 
-TODO: Description of this gem goes here.
+Track which user created or updated record in Rails.
 
 ---
 
@@ -17,11 +17,31 @@ TODO: Description of this gem goes here.
 ## Quick start
 
 ```
-$ gem install trackstamps-reborn
+$ bundler install trackstamps-reborn
 ```
 
+### Hook current_user into CurrentAttributes
+
 ```ruby
-require "trackstamps/reborn"
+class ApplicationController < ActionController::Base
+  before_action :set_trackstamps_user  
+
+  def set_trackstamps_user
+    Trackstamps::Reborn::Current.user = current_user
+  end
+end
+```
+
+### Generate migrations
+```
+rails generate trackstamps:reborn:migration table_name
+```
+
+## Include trackstamps
+```ruby
+class Example < ActiveRecord::Base
+  include Trackstamps::Reborn
+end
 ```
 
 ## Support
