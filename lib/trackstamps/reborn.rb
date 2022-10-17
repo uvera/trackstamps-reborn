@@ -17,7 +17,7 @@ module Trackstamps
 
     included do
       before_save :trackstamps_set_updater
-      before_create :trackstamps_set_updater
+      before_create :trackstamps_set_creator
 
       belongs_to :updater, class_name: TRACKSTAMPS_USER_CLASS_NAME, foreign_key: TRACKSTAMPS_UPDATER_FOREIGN_KEY, optional: true
       belongs_to :creator, class_name: TRACKSTAMPS_USER_CLASS_NAME, foreign_key: TRACKSTAMPS_CREATOR_FOREIGN_KEY, optional: true
