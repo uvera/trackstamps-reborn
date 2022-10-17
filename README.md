@@ -32,6 +32,20 @@ class ApplicationController < ActionController::Base
 end
 ```
 
+### Override implementation for current user
+
+```ruby
+module TrackstampsOverride
+
+  extend ActiveSupport::Concern
+  include Trackstamps::Reborn
+
+  def trackstamps_current_user
+    User.last
+  end
+end
+```
+
 ### Generate migrations
 ```
 rails generate trackstamps:reborn:migration table_name
