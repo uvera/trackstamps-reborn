@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.summary = ""
   spec.homepage = "https://github.com/uvera/trackstamps-reborn"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.6"
+  spec.required_ruby_version = ">= 2.7.0"
 
   spec.metadata = {
     "bug_tracker_uri" => "https://github.com/uvera/trackstamps-reborn/issues",
@@ -25,4 +25,5 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
   spec.add_dependency 'rails', '>= 5.2', '< 8'
+  spec.add_dependency 'dry-configurable'
 end
