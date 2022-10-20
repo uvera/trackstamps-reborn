@@ -37,15 +37,7 @@ end
 ### Override implementation for current user
 
 ```ruby
-module TrackstampsOverride
-
-  extend ActiveSupport::Concern
-  include Trackstamps::Reborn
-
-  def trackstamps_current_user
-    User.last
-  end
-end
+Trackstamps::Reborn.config.get_current_user = -> { YourCurrentAttributesClass.account }
 ```
 
 ### Generate migrations
