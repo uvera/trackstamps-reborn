@@ -44,5 +44,11 @@ module Trackstamps
         send("#{Trackstamps::Reborn.config.creator_foreign_key}=", trackstamps_current_user.id)
       end
     end
+
+    class_methods do
+      def with_trackstamps
+        includes(:creator, :updater)
+      end
+    end
   end
 end
