@@ -51,5 +51,11 @@ module Trackstamps
         send("#{self.class.const_get(:CREATOR_FOREIGN_KEY)}=", trackstamps_current_user.id)
       end
     end
+
+    class_methods do
+      def with_trackstamps
+        includes(:creator, :updater)
+      end
+    end
   end
 end
