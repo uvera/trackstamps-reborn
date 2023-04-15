@@ -3,6 +3,7 @@ require "rake/testtask"
 require "rubocop/rake_task"
 require "rspec/core/rake_task"
 
+RuboCop::RakeTask.new
 RSpec::Core::RakeTask.new(:test)
 
 task default: %i[test rubocop]
