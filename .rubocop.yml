@@ -1,15 +1,16 @@
 require:
-  - rubocop-minitest
   - rubocop-packaging
   - rubocop-performance
+  - rubocop-rspec
   - rubocop-rake
 
 AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
   NewCops: enable
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 2.7
   Exclude:
+    - "lib/generators/**/*"
     - "tmp/**/*"
     - "vendor/**/*"
 
@@ -105,3 +106,6 @@ Style/StringLiterals:
 
 Style/TrivialAccessors:
   AllowPredicates: true
+
+RuboCop/Cop/RSpec/DescribedClass:
+  Enabled: false

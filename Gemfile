@@ -1,12 +1,17 @@
 source "https://rubygems.org"
 gemspec
 
-gem "minitest", "~> 5.11"
-gem "minitest-ci", "~> 3.4"
-gem "minitest-reporters", "~> 1.3"
+rails_version = ENV["RAILS_VERSION"] || "~> 7.0"
+gem "activerecord", rails_version
+gem "activesupport", rails_version
+
+gem "database_cleaner", "~> 1.5"
 gem "rake", "~> 13.0"
+gem "rspec", "~> 3.12"
 gem "rubocop", "1.44.1"
-gem "rubocop-minitest", "0.22.2"
 gem "rubocop-packaging", "0.5.2"
 gem "rubocop-performance", "1.15.2"
 gem "rubocop-rake", "0.6.0"
+gem "rubocop-rspec"
+gem "sqlite3"
+gem "with_model", "~> 2.0"
