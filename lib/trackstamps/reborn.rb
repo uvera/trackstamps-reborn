@@ -1,6 +1,5 @@
+require 'active_support'
 require 'trackstamps/reborn/current'
-require 'active_support/current_attributes'
-require 'active_support/concern'
 require 'dry-configurable'
 
 module Trackstamps
@@ -23,25 +22,33 @@ module Trackstamps
       before_save :trackstamps_set_updater
       before_create :trackstamps_set_creator
 
+      const_set(:UPDATER_FOREIGN_KEY, Trackstamps::Reborn.config.updater_foreign_key.dup.freeze)
+
+      private_constant :UPDATER_FOREIGN_KEY
+
       belongs_to :updater,
                  class_name: Trackstamps::Reborn.config.user_class_name,
-                 foreign_key: Trackstamps::Reborn.config.updater_foreign_key,
+                 foreign_key: const_get(:UPDATER_FOREIGN_KEY),
                  optional: true
+
+      const_set(:CREATOR_FOREIGN_KEY, Trackstamps::Reborn.config.creator_foreign_key.dup.freeze)
+      private_constant :CREATOR_FOREIGN_KEY
+
       belongs_to :creator,
                  class_name: Trackstamps::Reborn.config.user_class_name,
-                 foreign_key: Trackstamps::Reborn.config.creator_foreign_key,
+                 foreign_key: const_get(:CREATOR_FOREIGN_KEY),
                  optional: true
 
       def trackstamps_set_updater
         return unless trackstamps_current_user
 
-        send("#{Trackstamps::Reborn.config.updater_foreign_key}=", trackstamps_current_user.id)
+        send("#{self.class.const_get(:UPDATER_FOREIGN_KEY)}=", trackstamps_current_user.id)
       end
 
       def trackstamps_set_creator
         return unless trackstamps_current_user
 
-        send("#{Trackstamps::Reborn.config.creator_foreign_key}=", trackstamps_current_user.id)
+        send("#{self.class.const_get(:CREATOR_FOREIGN_KEY)}=", trackstamps_current_user.id)
       end
     end
   end
