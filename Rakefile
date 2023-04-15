@@ -1,7 +1,7 @@
 require "bundler/gem_tasks"
 require "rake/testtask"
 require "rubocop/rake_task"
-require 'rspec/core/rake_task'
+require "rspec/core/rake_task"
 
 RSpec::Core::RakeTask.new(:test)
 

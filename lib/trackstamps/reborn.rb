@@ -1,6 +1,6 @@
-require 'active_support'
-require 'trackstamps/reborn/current'
-require 'dry-configurable'
+require "active_support"
+require "trackstamps/reborn/current"
+require "dry-configurable"
 
 module Trackstamps
   module Reborn
@@ -10,9 +10,9 @@ module Trackstamps
 
     setting :get_current_user, default: -> { Trackstamps::Reborn::Current.user }
 
-    setting :user_class_name, default: 'User'.freeze
-    setting :updater_foreign_key, default: 'updated_by_id'.freeze
-    setting :creator_foreign_key, default: 'created_by_id'.freeze
+    setting :user_class_name, default: "User".freeze
+    setting :updater_foreign_key, default: "updated_by_id".freeze
+    setting :creator_foreign_key, default: "created_by_id".freeze
 
     def trackstamps_current_user
       Trackstamps::Reborn.config.get_current_user.call

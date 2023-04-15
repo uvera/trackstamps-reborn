@@ -1,10 +1,10 @@
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'trackstamps/reborn'
+$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
+require "trackstamps/reborn"
 
-require 'database_cleaner'
-require 'with_model'
+require "database_cleaner"
+require "with_model"
 
-require 'dry/configurable/test_interface'
+require "dry/configurable/test_interface"
 
 DatabaseCleaner.strategy = :transaction
 
@@ -12,13 +12,13 @@ Trackstamps::Reborn.enable_test_interface
 
 RSpec.configure do |config|
   config.before :suite do
-    ActiveRecord::Base.establish_connection :adapter => 'sqlite3', database: ':memory:'
+    ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
   end
 
-  config.before :each do
+  config.before do
     DatabaseCleaner.start
   end
-  config.after :each do
+  config.after do
     DatabaseCleaner.clean
   end
 
@@ -29,9 +29,7 @@ RSpec.configure do |config|
   config.disable_monkey_patching!
   config.warnings = true
 
-  if config.files_to_run.one?
-    config.default_formatter = 'doc'
-  end
+  config.default_formatter = "doc" if config.files_to_run.one?
 
   config.order = :random
 

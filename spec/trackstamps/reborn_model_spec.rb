@@ -8,12 +8,12 @@ RSpec.describe Trackstamps::Reborn do
     end
 
     model do
-      Trackstamps::Reborn.reset_config
-      include Trackstamps::Reborn
+      described_class.reset_config
+      include described_class
     end
   end
 
-  context 'with users' do
+  context "with users" do
     let! :user_one do
       User.create!
     end
@@ -23,49 +23,53 @@ RSpec.describe Trackstamps::Reborn do
     end
 
     before do
-      Trackstamps::Reborn::Current.user = user_one
+      described_class::Current.user = user_one
     end
 
-    describe 'updating' do
+    describe "updating" do
       let! :post do
         Post.create!
       end
 
-      it 'another user updates post' do
-        Trackstamps::Reborn::Current.user = user_two
-        post.update!(title: 'Else')
+      it "another user updates post" do
+        described_class::Current.user = user_two
+        post.update!(title: "Else")
         expect(post.updater).to eq(user_two)
       end
 
-      it 'another user updates post but creator stays the same' do
-        Trackstamps::Reborn::Current.user = user_two
-        post.update!(title: 'Else')
+      it "another user updates post but creator stays the same" do
+        described_class::Current.user = user_two
+        post.update!(title: "Else")
         expect(post.creator).to eq(user_one)
       end
     end
 
-    describe 'creation' do
-      it 'assigns user' do
+    describe "creation" do
+      it "assigns user" do
         post = Post.create!
         expect(post.creator).to eq(user_one)
       end
 
-      it 'assigns only after saving' do
-        post = Post.new
+      it "has no creator when new" do
+        post = Order.new
         expect(post.creator).to be_nil
+      end
+
+      it "assigns only after saving" do
+        post = Order.new
         post.save!
         expect(post.creator).to eq(user_one)
       end
     end
   end
 
-  context 'with no user created' do
-    it 'no user assigned to creator' do
+  context "with no user created" do
+    it "no user assigned to creator" do
       post = Post.create!
       expect(post.creator).to be_nil
     end
 
-    it 'no user assigned to updater' do
+    it "no user assigned to updater" do
       post = Post.create!
       expect(post.updater).to be_nil
     end
