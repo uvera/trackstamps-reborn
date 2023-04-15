@@ -1,8 +1,7 @@
 # trackstamps-reborn
 
 [![Gem Version](https://badge.fury.io/rb/trackstamps-reborn.svg)](https://rubygems.org/gems/trackstamps-reborn)
-[![Circle](https://circleci.com/gh/uvera/trackstamps-reborn/tree/main.svg?style=shield)](https://app.circleci.com/pipelines/github/uvera/trackstamps-reborn?branch=main)
-[![Code Climate](https://codeclimate.com/github/uvera/trackstamps-reborn/badges/gpa.svg)](https://codeclimate.com/github/uvera/trackstamps-reborn)
+[![Test](https://github.com/uvera/trackstamps-reborn/actions/workflows/test.yml/badge.svg)](https://github.com/uvera/trackstamps-reborn/actions/workflows/test.yml)
 
 Track which user created or updated record in Rails.
 
