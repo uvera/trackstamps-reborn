@@ -8,8 +8,8 @@ RSpec.describe Trackstamps::Reborn do
     end
 
     model do
-      described_class.reset_config
-      include described_class
+      Trackstamps::Reborn.reset_config
+      include Trackstamps::Reborn
     end
   end
 
@@ -51,12 +51,12 @@ RSpec.describe Trackstamps::Reborn do
       end
 
       it "has no creator when new" do
-        post = Order.new
+        post = Post.new
         expect(post.creator).to be_nil
       end
 
       it "assigns only after saving" do
-        post = Order.new
+        post = Post.new
         post.save!
         expect(post.creator).to eq(user_one)
       end

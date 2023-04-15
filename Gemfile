@@ -1,8 +1,10 @@
 source "https://rubygems.org"
 gemspec
 
-gem "activerecord", "~> 7.0"
-gem "activesupport", "~> 7.0"
+rails_version = ENV["RAILS_VERSION"] || "~> 7.0"
+gem "activerecord", rails_version
+gem "activesupport", rails_version
+
 gem "database_cleaner", "~> 1.5"
 gem "rake", "~> 13.0"
 gem "rspec", "~> 3.12"

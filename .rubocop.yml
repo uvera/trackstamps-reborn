@@ -106,3 +106,6 @@ Style/StringLiterals:
 
 Style/TrivialAccessors:
   AllowPredicates: true
+
+RuboCop/Cop/RSpec/DescribedClass:
+  Enabled: false

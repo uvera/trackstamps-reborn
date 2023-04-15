@@ -2,16 +2,16 @@ RSpec.describe Trackstamps::Reborn do
   with_model :Account, scope: :all
   with_model :Order, scope: :all do
     table do |t|
-      t.string :title, default: "Order title"
+      t.string :title, default: "record title"
       t.integer :assigned_by_id, null: true
       t.integer :edited_by_id, null: true
     end
 
     model do
-      described_class.config.user_class_name = "Account"
-      described_class.config.updater_foreign_key = "edited_by_id"
-      described_class.config.creator_foreign_key = "assigned_by_id"
-      include described_class
+      Trackstamps::Reborn.config.user_class_name = "Account"
+      Trackstamps::Reborn.config.updater_foreign_key = "edited_by_id"
+      Trackstamps::Reborn.config.creator_foreign_key = "assigned_by_id"
+      include Trackstamps::Reborn
     end
   end
 
@@ -29,51 +29,51 @@ RSpec.describe Trackstamps::Reborn do
     end
 
     describe "updating" do
-      let! :post do
+      let! :record do
         Order.create!
       end
 
       it "another user updates post" do
         described_class::Current.user = user_two
-        post.update!(title: "Else")
-        expect(post.updater).to eq(user_two)
+        record.update!(title: "Else")
+        expect(record.updater).to eq(user_two)
       end
 
-      it "another user updates post but creator stays the same" do
+      it "another user updates the record but creator stays the same" do
         described_class::Current.user = user_two
-        post.update!(title: "Else")
-        expect(post.creator).to eq(user_one)
+        record.update!(title: "Else")
+        expect(record.creator).to eq(user_one)
       end
     end
 
     describe "creation" do
       it "assigns user" do
-        post = Order.create!
-        expect(post.creator).to eq(user_one)
+        record = Order.create!
+        expect(record.creator).to eq(user_one)
       end
 
       it "has no creator when new" do
-        post = Order.new
-        expect(post.creator).to be_nil
+        record = Order.new
+        expect(record.creator).to be_nil
       end
 
       it "assigns only after saving" do
-        post = Order.new
-        post.save!
-        expect(post.creator).to eq(user_one)
+        record = Order.new
+        record.save!
+        expect(record.creator).to eq(user_one)
       end
     end
   end
 
   context "with no user created" do
     it "no user assigned to creator" do
-      post = Order.create!
-      expect(post.creator).to be_nil
+      record = Order.create!
+      expect(record.creator).to be_nil
     end
 
     it "no user assigned to updater" do
-      post = Order.create!
-      expect(post.updater).to be_nil
+      record = Order.create!
+      expect(record.updater).to be_nil
     end
   end
 
