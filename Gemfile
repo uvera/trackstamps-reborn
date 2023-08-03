@@ -5,7 +5,7 @@ rails_version = ENV["RAILS_VERSION"] || "~> 7.0"
 gem "activerecord", rails_version
 gem "activesupport", rails_version
 
-gem "database_cleaner", "~> 1.5"
+gem "database_cleaner", "~> 2.0"
 gem "rake", "~> 13.0"
 gem "rspec", "~> 3.12"
 gem "rubocop", "1.54.0"
