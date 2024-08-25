@@ -12,6 +12,7 @@ Trackstamps::Reborn.enable_test_interface
 
 RSpec.configure do |config|
   config.before :suite do
+    RSpec.reset
     ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
   end
 
