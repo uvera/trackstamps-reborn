@@ -1,14 +1,14 @@
-require 'rails/generators/active_record'
+require "rails/generators/active_record"
 
 class Trackstamps::Reborn::MigrationGenerator < ::Rails::Generators::Base
   include Rails::Generators::Migration
 
-  source_root File.expand_path('../templates', __FILE__)
-  argument :table, :type => :string, :default => "application"
-  desc 'Generate migration file required for trackstamps'
+  source_root File.expand_path("../templates", __FILE__)
+  argument :table, type: :string, default: "application"
+  desc "Generate migration file required for trackstamps"
 
   def install
-    migration_template 'migration.rb', "db/migrate/add_trackstamps_to_#{table}.rb"
+    migration_template "migration.rb", "db/migrate/add_trackstamps_to_#{table}.rb"
   end
 
   def migration_data
