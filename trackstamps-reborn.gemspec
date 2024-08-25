@@ -2,7 +2,7 @@ require_relative "lib/trackstamps/version"
 
 Gem::Specification.new do |spec|
   spec.name = "trackstamps-reborn"
-  spec.version = Trackstamp::VERSION
+  spec.version = Trackstamps::VERSION
   spec.authors = ["Dušan"]
   spec.email = ["dusanuveric@protonmail.com"]
 
