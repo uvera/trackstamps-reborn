@@ -1,4 +1,4 @@
-require_relative "lib/trackstamps/reborn/version"
+require_relative "lib/trackstamps/version"
 
 Gem::Specification.new do |spec|
   spec.name = "trackstamps-reborn"
