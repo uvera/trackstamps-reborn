@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.name = "trackstamps-reborn"
   spec.version = Trackstamp::VERSION
   spec.authors = ["Dušan"]
-  spec.email = ["dusan.uveric@mitigate.dev"]
+  spec.email = ["dusanuveric@protonmail.com"]
 
   spec.summary = ""
   spec.homepage = "https://github.com/uvera/trackstamps-reborn"
