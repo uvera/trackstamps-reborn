@@ -29,6 +29,8 @@ class ApplicationController < ActionController::Base
 
   def set_trackstamps_user
     Trackstamps::Reborn::Current.user = current_user
+    # or use your current attributes class with proc override in initializers
+    YourCurrentAttributesClass.user = current_user
   end
 end
 ```
@@ -36,7 +38,10 @@ end
 ### Override implementation for current user
 
 ```ruby
-Trackstamps::Reborn.config.get_current_user = -> { YourCurrentAttributesClass.account }
+## filename: config/initializers/trackstamps-reborn.rb
+Trackstamps::Reborn.config.get_current_user = -> { YourCurrentAttributesClass.user }
+# or
+Trackstamps::Reborn[:alternative].config.get_current_user = -> { YourAlternativeCurrentAttributesClass.user }
 ```
 
 ### Generate migrations
@@ -48,8 +53,21 @@ rails generate trackstamps:reborn:migration table_name
 ```ruby
 class Example < ActiveRecord::Base
   include Trackstamps::Reborn
+  # or
+  include Trackstamps::Reborn[:whatever]
 end
 ```
+
+## Multiple configuration
+
+Multiple configuration is achieved with module builder pattern utilizing `self.[]` method.
+Upon calling
+
+```ruby
+Trackstamps::Reborn[:whatever]
+```
+
+specific module is cached in `::Concurrent::Map` instance.
 
 ## Support
 
