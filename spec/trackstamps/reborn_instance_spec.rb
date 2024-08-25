@@ -1,5 +1,5 @@
 RSpec.describe Trackstamps::Reborn do
-  context "changing defaults is reflected in itself" do
+  describe "changing defaults is reflected in itself" do
     before do
       Trackstamps::Reborn.config.user_class_name = "Account"
     end
@@ -9,7 +9,7 @@ RSpec.describe Trackstamps::Reborn do
     end
   end
 
-  context "changing another does not interfere with user class name" do
+  describe "changing another does not interfere with user class name" do
     before do
       Trackstamps::Reborn.config.user_class_name = "Default"
       Trackstamps::Reborn[:alternative].config.user_class_name = "Alternative"
@@ -24,7 +24,7 @@ RSpec.describe Trackstamps::Reborn do
     end
   end
 
-  context "changing another does not interfere with updater foreign key" do
+  describe "changing another does not interfere with updater foreign key" do
     before do
       Trackstamps::Reborn.config.updater_foreign_key = "updater_default_id"
       Trackstamps::Reborn[:alternative].config.updater_foreign_key = "updater_alternative_id"
@@ -39,7 +39,7 @@ RSpec.describe Trackstamps::Reborn do
     end
   end
 
-  context "changing another does not interfere with creator foreign key" do
+  describe "changing another does not interfere with creator foreign key" do
     before do
       Trackstamps::Reborn.config.creator_foreign_key = "creator_default_id"
       Trackstamps::Reborn[:alternative].config.creator_foreign_key = "creator_alternative_id"
@@ -54,7 +54,7 @@ RSpec.describe Trackstamps::Reborn do
     end
   end
 
-  context "changing another does not interfere with get current user proc" do
+  describe "changing another does not interfere with get current user proc" do
     before do
       Trackstamps::Reborn.config.get_current_user = -> { "default" }
       Trackstamps::Reborn[:alternative].config.get_current_user = -> { "alternative" }
