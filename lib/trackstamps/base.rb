@@ -1,7 +1,7 @@
 require "active_support"
 require "dry-configurable"
 
-# rubocop:disable  Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength
+# rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength
 module Trackstamps
   module Base
     @mixins = ::Concurrent::Map.new
@@ -99,4 +99,5 @@ module Trackstamps
     end
   end
 end
-# rubocop:enable  Metrics/AbcSize, Metrics/MethodLength
+
+# rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength
