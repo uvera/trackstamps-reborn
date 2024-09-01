@@ -87,4 +87,12 @@ RSpec.describe Trackstamps::Reborn do
     instance = Trackstamps::Reborn[:inspected]
     expect(instance.inspect).to eq("Trackstamps::Reborn[:inspected]")
   end
+
+  it "only constructs module once" do
+    Trackstamps::Reborn[:once]
+    module_count = Trackstamps::Base.instance_variable_get(:@mixins).keys.length
+    Trackstamps::Reborn[:once]
+    new_count = Trackstamps::Base.instance_variable_get(:@mixins).keys.length
+    expect(module_count).to eq(new_count)
+  end
 end
