@@ -1,7 +1,7 @@
 require "active_support"
 require "dry-configurable"
 
-# rubocop:disable  Metrics/AbcSize, Metrics/MethodLength
+# rubocop:disable  Metrics/AbcSize, Metrics/MethodLength, Metrics/BlockLength
 module Trackstamps
   module Base
     @mixins = ::Concurrent::Map.new
@@ -26,8 +26,8 @@ module Trackstamps
         mod
       end
 
-      mod.define_singleton_method(:[]) do |module_key|
-        Trackstamps::Base[module_key]
+      mod.define_singleton_method(:[]) do |key|
+        Trackstamps::Base[key]
       end
 
       mod.module_eval do
