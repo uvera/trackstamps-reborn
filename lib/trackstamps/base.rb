@@ -27,14 +27,13 @@ module Trackstamps
       end
 
       mod.module_eval do
-        const_set(:Current, Trackstamps::Base::Current)
-
         extend Dry::Configurable
         extend ActiveSupport::Concern
         autoload :VERSION, "trackstamps/reborn/version"
 
-        setting :get_current_user, default: -> { Current.user }
+        const_set(:Current, Trackstamps::Base::Current)
 
+        setting :get_current_user, default: -> { Current.user }
         setting :user_class_name, default: "User".freeze
         setting :updater_foreign_key, default: "updated_by_id".freeze
         setting :creator_foreign_key, default: "created_by_id".freeze
@@ -54,19 +53,18 @@ module Trackstamps
             :UPDATER_FOREIGN_KEY,
             mod.config.updater_foreign_key.dup.freeze
           )
+          const_set(
+            :CREATOR_FOREIGN_KEY,
+            mod.config.creator_foreign_key.dup.freeze
+          )
 
           private_constant :UPDATER_FOREIGN_KEY
+          private_constant :CREATOR_FOREIGN_KEY
 
           belongs_to :updater,
                      class_name: mod.config.user_class_name,
                      foreign_key: const_get(:UPDATER_FOREIGN_KEY),
                      optional: true
-
-          const_set(
-            :CREATOR_FOREIGN_KEY,
-            mod.config.creator_foreign_key.dup.freeze
-          )
-          private_constant :CREATOR_FOREIGN_KEY
 
           belongs_to :creator,
                      class_name: mod.config.user_class_name,
