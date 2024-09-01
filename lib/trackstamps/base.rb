@@ -44,6 +44,9 @@ module Trackstamps
             trackstamps_module.config.get_current_user.call
           end
 
+          private :trackstamps_module
+          private :trackstamps_current_user
+
           before_save :trackstamps_set_updater
           before_create :trackstamps_set_creator
 
