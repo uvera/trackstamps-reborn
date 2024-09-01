@@ -91,7 +91,7 @@ RSpec.describe Trackstamps::Reborn do
     end
   end
 
-  context "trackstamps instance methods are private" do
+  describe "trackstamps instance methods are private" do
     it "cannot access trackstamps_module" do
       post = Post.create!
       expect { post.trackstamps_module }.to raise_error(NoMethodError)
