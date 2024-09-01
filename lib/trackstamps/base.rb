@@ -10,9 +10,9 @@ module Trackstamps
       attribute :user
     end
 
-    def self.[](instance_name=:default)
-      @mixins.fetch_or_store(instance_name.to_s) do
-        construct_new_module(instance_name)
+    def self.[](module_key=:default)
+      @mixins.fetch_or_store(module_key.to_s) do
+        construct_new_module(module_key)
       end
     end
 
@@ -24,6 +24,10 @@ module Trackstamps
 
       mod.define_method(:trackstamps_module) do
         mod
+      end
+
+      mod.define_singleton_method(:[]) do |module_key|
+        Trackstamps::Base[module_key]
       end
 
       mod.module_eval do

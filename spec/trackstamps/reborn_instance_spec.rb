@@ -95,4 +95,8 @@ RSpec.describe Trackstamps::Reborn do
     new_count = Trackstamps::Base.instance_variable_get(:@mixins).keys.length
     expect(module_count).to eq(new_count)
   end
+
+  it "expect double index to return same module" do
+    expect(Trackstamps::Reborn[:something][:something]).to eq(Trackstamps::Reborn[:something])
+  end
 end
