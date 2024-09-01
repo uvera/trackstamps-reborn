@@ -61,6 +61,22 @@ RSpec.describe Trackstamps::Reborn do
         expect(post.creator).to eq(user_one)
       end
     end
+
+    describe "other config does not interfere" do
+      before do
+        described_class::Current.user = user_two
+        Trackstamps::Reborn[:alternative].config.get_current_user = -> {}
+      end
+
+      it "user is not nil" do
+        post = Post.create!
+        expect(post.creator).to eq(user_two)
+      end
+
+      it "calling module config method returns user two" do
+        expect(Trackstamps::Reborn.config.get_current_user.call).to eq(user_two)
+      end
+    end
   end
 
   context "with no user created" do

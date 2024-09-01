@@ -9,10 +9,12 @@ require "dry/configurable/test_interface"
 DatabaseCleaner.strategy = :transaction
 
 Trackstamps::Reborn.enable_test_interface
+Trackstamps::Reborn[:alternative].enable_test_interface
 
 RSpec.configure do |config|
   config.before :suite do
-    RSpec.reset
+    Trackstamps::Reborn.reset_config
+    Trackstamps::Reborn[:alternative].reset_config
     ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
   end
 
