@@ -8,7 +8,6 @@ RSpec.describe Trackstamps::Reborn do
     end
 
     model do
-      Trackstamps::Reborn.reset_config
       include Trackstamps::Reborn
     end
   end
