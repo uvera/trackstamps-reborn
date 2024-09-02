@@ -16,7 +16,7 @@ RSpec.configure do |config|
     ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
   end
 
-  config.before do
+  config.after do
     Trackstamps::Reborn.reset_config
     Trackstamps::Reborn[:alternative].reset_config
   end
