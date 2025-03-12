@@ -13,7 +13,11 @@ gem "rubocop-packaging", "0.5.2"
 gem "rubocop-performance", "1.23.0"
 gem "rubocop-rake", "0.6.0"
 gem "rubocop-rspec"
-gem "sqlite3", "~> 2.6.0"
+if rails_version == "~> 8.0"
+  gem "sqlite3", "~> 2.6.0"
+else
+  gem "sqlite3", "~> 1.7.3"
+end
 if rails_version == "~> 5.2.0"
   gem "with_model", "~> 2.0"
 else
