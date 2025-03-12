@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 gemspec
 
-rails_version = ENV["RAILS_VERSION"] || "~> 7.0"
+rails_version = ENV["RAILS_VERSION"] || "~> 8.0"
 gem "activerecord", rails_version
 gem "activesupport", rails_version
 

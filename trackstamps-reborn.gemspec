@@ -24,6 +24,6 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-  spec.add_dependency "activesupport", ">= 5.2", "< 8"
+  spec.add_dependency "activesupport", ">= 5.2", "<= 8.0.2"
   spec.add_dependency "dry-configurable", "~> 1.0"
 end
