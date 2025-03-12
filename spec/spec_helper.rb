@@ -1,4 +1,5 @@
 $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
+require "logger"
 require "trackstamps/reborn"
 
 require "database_cleaner"
