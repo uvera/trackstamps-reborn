@@ -19,7 +19,7 @@ else
   gem "sqlite3", "~> 1.7.3"
 end
 if rails_version == "~> 5.2.0"
-  gem "with_model", "~> 2.0"
+  gem "with_model", "~> 2.2.0"
 else
-  gem "with_model", "~> 2.1.7"
+  gem "with_model", "~> 2.2.0"
 end
